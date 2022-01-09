@@ -1,0 +1,12 @@
+.card {
+  .card-header {
+    height: 6rem;
+  }
+  .card-content {
+    height: 400px;
+    .article-image {
+      height: 200px;
+      align-self: center;
+    }
+  }
+}
