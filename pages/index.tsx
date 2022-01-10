@@ -3,14 +3,13 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
-// import styles from "../styles/Home.module.scss";
 import client from "../contentful/index";
 import { IMainFields, IArticleFields, IMain, IArticle } from "../contentful";
 
 import { Container, Row, Col, Card, CardHeader, CardText } from "reactstrap";
+import BlogCard from "../components/BlogCard";
 
 const Home = ({
-  titleProp,
   home,
   articles,
 }: {
@@ -21,7 +20,6 @@ const Home = ({
   const {
     fields: { title, description, background },
   } = home;
-  console.log(articles);
 
   return (
     <div>
@@ -45,32 +43,11 @@ const Home = ({
         <Container className="p-3">
           <Row>
             {articles.map((article: IArticle) => {
-              const { slug, title, description, url, author, image } =
-                article.fields;
-              {
-                console.log(`url(http:${image?.fields.file.url}`);
-              }
+              const { slug } = article.fields;
+
               return (
-                <Col key={slug}>
-                  <Card className="card">
-                    <CardHeader className="card-header" tag="h4">
-                      {title}
-                    </CardHeader>
-                    <Container className="card-content d-flex flex-column justify-content-between  p-3">
-                      <div className="d-flex justify-content-center">
-                        <img
-                          className="article-image mx-auto"
-                          src={`http:${image?.fields.file.url}` || ""}
-                          alt="article-image"
-                        />
-                      </div>
-                      <CardText>{description}</CardText>
-                      <CardText className="font-italic">
-                        Author: {author}
-                      </CardText>
-                      <Link href={`/blog/${slug}`}>Read More</Link>
-                    </Container>
-                  </Card>
+                <Col key={slug} className="p-2 col-12 col-md-6 col-lg-4">
+                  <BlogCard article={article} blogPage={false} />
                 </Col>
               );
             })}
@@ -91,7 +68,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   const articleEntries = await client.getEntries<IArticleFields>({
     content_type: "article",
-    limit: 2,
   });
 
   const [homePage] = home.items;
@@ -99,7 +75,6 @@ export const getStaticProps: GetStaticProps = async () => {
 
   return {
     props: {
-      titleProp: "Visar",
       home: homePage,
       articles: articles,
     },

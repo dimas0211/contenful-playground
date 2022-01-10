@@ -1,11 +1,15 @@
+const dotenv = require("dotenv").config().parsed;
+
 const contentfulManagement = require("contentful-management");
+const accessToken = `${dotenv.CONTENTFUL_ENV_ACCESS_TOKEN}`;
+const space = `${dotenv.CONTENTFUL_SPACE}`;
 
 module.exports = function () {
   const contentfulClient = contentfulManagement.createClient({
-    accessToken: "CFPAT-GOkpuysNMY_rDcsPUIq5Hr8bcMIKLA7yNml7G7xKk6Y",
+    accessToken: accessToken,
   });
 
   return contentfulClient
-    .getSpace("92s4f0wqi8pg")
+    .getSpace(space)
     .then((space) => space.getEnvironment("master"));
 };

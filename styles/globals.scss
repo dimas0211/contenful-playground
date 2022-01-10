@@ -1,3 +1,6 @@
+// variables
+$header-height: 97px;
+
 html,
 body {
   padding: 0;
@@ -13,4 +16,17 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+.navbar {
+  .navbar-brand {
+    pointer-events: none;
+    color: darkgray;
+  }
+  border-bottom: 1px solid darkgray;
+  background-color: white;
+}
+
+.page-container {
+  padding-top: $header-height;
 }

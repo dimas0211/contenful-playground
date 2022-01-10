@@ -3,9 +3,10 @@
     height: 6rem;
   }
   .card-content {
-    height: 400px;
+    height: 450px;
     .article-image {
-      height: 200px;
+      max-width: 100%;
+      min-height: 50px;
       align-self: center;
     }
   }
