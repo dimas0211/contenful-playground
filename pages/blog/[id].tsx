@@ -5,7 +5,7 @@ import client from "../../contentful/index";
 
 import { IArticleFields } from "../../contentful";
 
-import { Container, Row, Col, Card, CardHeader, CardText } from "reactstrap";
+import { Container } from "reactstrap";
 import BlogCard from "../../components/BlogCard";
 
 const _blog = ({ article }: { article: any }) => {
@@ -24,8 +24,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
     content_type: "article",
     select: "fields.slug",
   });
-
-  const articles = articleEntries.items;
 
   return {
     paths: articleEntries.items.map((item) => ({

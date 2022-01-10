@@ -1,8 +1,6 @@
 import type { GetStaticProps } from "next";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import client from "../contentful/index";
 import { IMainFields, IArticleFields, IMain, IArticle } from "../contentful";
 

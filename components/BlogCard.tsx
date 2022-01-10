@@ -1,5 +1,3 @@
-import type { GetStaticProps } from "next";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import Link from "next/link";
 import { IArticle } from "../contentful";
 
